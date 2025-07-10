@@ -183,18 +183,66 @@ public class Node2{
         return head;
     }
 
+
+    ///////////////////////  Delete Node at Fixed Position ///////////////////////
+    public Node2 deleteFixedPosition(Node2 head, int position)
+    {
+        if(head == null)
+        {
+            System.out.println("empty list");
+        }
+        if(position ==1)
+        {
+            head= head.next;
+            return head;
+        }
+        position--;
+        Node2 temp1=head;
+        while(position>1 && temp1!=null)
+        {
+            temp1=temp1.next;
+            position--;
+        }
+        temp1.next = temp1.next.next; 
+
+        return head;
+    }
+
+
+    ////////////////////////////////  reverse Singly LinkedList  ////////////////////////
+    public void Reverse(Node2 head)
+    {
+        int no=0;
+        Node2 temp1=head.next;
+        while(temp1!=null)
+        {
+            temp1=temp1.next;
+            no++;
+        }
+        while(no>0)
+        {
+            System.out.println(temp1);
+            no--;
+        }
+
+    }
+
     public static void main(String[] args) {
         Node2 f1=new Node2(10);
         Node2 f2=new Node2(20);
         Node2 f3=new Node2(30);
         Node2 f4=new Node2(40);
         Node2 f5=new Node2(50);
+        Node2 f6=new Node2(60);
+        Node2 f7=new Node2(70);
         Node2 head=f1;
         f1.next=f2;
         f2.next=f3;
         f3.next=f4; 
         f4.next=f5;
-        f5.next=null;
+        f5.next=f6;
+        f6.next=f7;
+        f7.next=null;
         head.show(head);
 
         head.addStart(head);
@@ -213,7 +261,16 @@ public class Node2{
         head = head.deleteLast(head);
         System.out.println("\nAfter deleting last node:");
          head.show(head);
+
+   System.out.println("\nAfter deleting node at fixed position:");
+         head=head.deleteFixedPosition(head,3 );
+         head.show(head);
              
+
+
+         head.Reverse(head);
+        System.out.println("\nAfter reversing the linked list:");
+        head.show(head);
         
     }
 }
